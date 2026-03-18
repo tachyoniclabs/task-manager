@@ -3,13 +3,23 @@
     "PreToolUse": [
       {
         "matcher": "Edit|Write",
-        "command": "if echo \"$CLAUDE_FILE_PATH\" | grep -q '\\.env'; then echo 'BLOCKED: Cannot modify .env files' && exit 1; fi"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_FILE_PATH\" | grep -q '\\.env'; then echo 'BLOCKED: Cannot modify .env files' && exit 1; fi"
+          }
+        ]
       }
     ],
     "PostToolUse": [
       {
         "matcher": "Edit|Write",
-        "command": "npx prettier --write $CLAUDE_FILE_PATH 2>/dev/null || true"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx prettier --write $CLAUDE_FILE_PATH 2>/dev/null || true"
+          }
+        ]
       }
     ]
   }
