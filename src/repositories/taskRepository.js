@@ -47,9 +47,11 @@ function createTaskRepository(db) {
   }
 
   function create({ title, description, status, priority, due_date }) {
-    const result = db.prepare(
-      'INSERT INTO tasks (title, description, status, priority, due_date) VALUES (?, ?, ?, ?, ?)',
-    ).run(title, description, status || 'pending', priority || 'medium', due_date || null);
+    const result = db
+      .prepare(
+        'INSERT INTO tasks (title, description, status, priority, due_date) VALUES (?, ?, ?, ?, ?)',
+      )
+      .run(title, description, status || 'pending', priority || 'medium', due_date || null);
 
     return findById(result.lastInsertRowid);
   }

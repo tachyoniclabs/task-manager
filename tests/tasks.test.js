@@ -109,9 +109,7 @@ describe('GET /api/tasks/stats', () => {
   it('returns task counts by status', async () => {
     await request(app).post('/api/tasks').send({ title: 'Pending 1' });
     await request(app).post('/api/tasks').send({ title: 'Pending 2' });
-    await request(app)
-      .post('/api/tasks')
-      .send({ title: 'Done', status: 'completed' });
+    await request(app).post('/api/tasks').send({ title: 'Done', status: 'completed' });
 
     const res = await request(app).get('/api/tasks/stats');
 
