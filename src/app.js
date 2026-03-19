@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const { createDatabase } = require('./db/database');
 const { createTaskRepository } = require('./repositories/taskRepository');
@@ -13,6 +14,7 @@ function createApp(dbPath) {
   const taskService = createTaskService(taskRepository);
   const taskRoutes = createTaskRoutes(taskService);
 
+  app.use(express.static(path.join(__dirname, '..', 'public')));
   app.use(express.json());
   app.use('/api/tasks', taskRoutes);
   app.use(errorHandler);
