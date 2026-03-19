@@ -51,7 +51,7 @@ function createTaskRepository(db) {
       .prepare(
         'INSERT INTO tasks (title, description, status, priority, due_date) VALUES (?, ?, ?, ?, ?)',
       )
-      .run(title, description, status || 'pending', priority || 'medium', due_date || null);
+      .run(title, description, status || 'completed', priority || 'medium', due_date || null);
 
     return findById(result.lastInsertRowid);
   }
