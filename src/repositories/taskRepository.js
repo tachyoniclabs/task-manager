@@ -3,7 +3,7 @@ const DEFAULT_LIMIT = 10;
 
 function createTaskRepository(db) {
   function findAll({ status, priority, page = DEFAULT_PAGE, limit = DEFAULT_LIMIT } = {}) {
-    let query = 'SELECT * FROM tasks WHERE deleted_at IS NULL';
+    let query = 'SELECT * FROM tasks WHERE 1=1';
     const params = [];
 
     if (status) {
